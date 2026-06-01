@@ -57,16 +57,19 @@ router.put('/update/:_id', async (req, res) => {
         const { _id } = req.params;
 
         const { Product_Id, Date, Quantity, Unit_Price } = req.body;
-        const Total_Price = Number(Quantity) * Number(Unit_Price);
 
         let updated = {};
 
         if (Product_Id) updated.Product_Id = Product_Id;
-        if (Product_Name) updated.Product_Name = Product_Name;
+        if (Date) updated.Date = Date;
+        if (Quantity) updated.Quantity = Quantity;
+        if (Unit_Price) updated.Unit_Price = Unit_Price;
+       
+        const Total_Price = Number(Quantity) * Number(Unit_Price);
 
-        const updatedProduct = await Product.findByIdAndUpdate(_id, updated, { new: true });
+        const updatedStockIn = await Product.findByIdAndUpdate(_id, updated, { new: true });
 
-        return res.status(200).json({ message: 'Updated product', updated: updatedProduct });
+        return res.status(200).json({ message: 'Updated product', updated: updatedStockIn });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: 'Internal server error' });   
