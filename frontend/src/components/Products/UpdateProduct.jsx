@@ -26,7 +26,7 @@ const UpdateProduct = () => {
 
     const handleUpdateProducts = async () => {
         try {
-            const res = await axios.put(`http://localhost:3000/stockIn/update/${_id}`, { Product_Id, Product_Name });
+            const res = await axios.put(`http://localhost:3000/product/update/${_id}`, { Product_Id, Product_Name });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);

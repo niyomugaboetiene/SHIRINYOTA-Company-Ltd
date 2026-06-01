@@ -34,12 +34,14 @@ const AddProduct = () => {
             <div className="mt-2">
                 <label htmlFor="" className="text-blue-500 block">Product Id</label>
                 <input type="text" 
+                placeholder="Product Id"
                 className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
                 onChange={(e) => setProduct_Id(e.target.value)} />
             </div>
             <div className="mt-2">
                 <label htmlFor="" className="text-blue-500 block">Product Name</label>
                 <input type="text" 
+                placeholder="Product Name"
                 className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
                 onChange={(e) => setProduct_Name(e.target.value)} />
             </div>
