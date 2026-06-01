@@ -1,22 +1,20 @@
-import Stock_In from "../schema/Stock_InSchema.js";
+import Stock_Out from "../schema/Stock_OutSchema.js";
 import express from "express";
 
 const router = express.Router();
 
 router.post('/addNew', async (req, res) => {
     try {
-        // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
-        const { Product_Id, Date, Quantity, Unit_Price } = req.body;
+        // Product_Id(FK),Date,Quantity,
+        const { Product_Id, Date, Quantity } = req.body;
 
-        if (!Product_Id || !Date || !Quantity || !Unit_Price) {
+        if (!Product_Id || !Date || !Quantity) {
             return res.status(400).json({ message: 'Fill out missing fields' });
         }
 
-        const Total_Price = Number(Quantity) * Number(Unit_Price);
+        const newStockOut = await Stock_Out.create({ Product_Id, Date, Quantity });
 
-        const newStockIn = await Stock_In.create({ Product_Id, Date, Quantity, Unit_Price, Total_Price });
-
-        return res.status(201).json({ message: 'New Stock In', stockIn: newStockIn });
+        return res.status(201).json({ message: 'New Stock Out', stockOut: newStockOut });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: 'Internal server error' });
