@@ -4,6 +4,7 @@ import ProductRoute from "./routes/ProductRoute.js";
 import StockInRoute from "./routes/Stock_InRoute.js";
 import StockOutRoute from "./routes/Stock_OutRoute.js";
 import connection from "./config/conn.js";
+import session from "express-session";
 
 connection();
 
@@ -11,6 +12,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(session({
+    secret: 'my-secret-key',
+    resave: false,
+    saveUninitialized: true
+}))
 
 app.use('/product', ProductRoute);
 app.use('/stockIn', StockInRoute);

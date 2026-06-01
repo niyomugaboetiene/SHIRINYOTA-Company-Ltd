@@ -43,8 +43,8 @@ function App() {
           <Route path="/product/list" element={<ProductList /> }/>
           <Route path="/product/update/:_id" element={<UpdateProduct />}/>
 
-          <Route path="/nav" element={<Footer />}/>
        </Routes>
+       <Footer />
     </BrowserRouter>
   )
 }
