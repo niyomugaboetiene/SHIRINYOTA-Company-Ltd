@@ -39,13 +39,17 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'Fill out missing fields' });
         }
 
-        const isUserNameExist = await User.find({ User_Name });
+        const isUserNameExist = await User.findOne({ User_Name });
 
+        // console.log(isUserNameExist);
+        // console.log(req.body);
+// console.log("Password:", Password);
         if (!isUserNameExist) {
             return res.status(403).json({ message: 'Invalid User name' });
         }
 
         const hashedPassword = isUserNameExist.Password;
+// console.log("Hashed:", hashedPassword);
 
         const isPasswordCorrect = await bcrypt.compare(Password, hashedPassword);
 
@@ -58,7 +62,7 @@ router.post('/login', async (req, res) => {
             User_Name: isUserNameExist.User_Name
         }
 
-        return res.status(201).json({ message: 'Logged in successfully', user: req.session.user });
+        return res.status(200).json({ message: 'Logged in successfully', user: req.session.user });
     } catch (err) {
         console.error(err);
     }
