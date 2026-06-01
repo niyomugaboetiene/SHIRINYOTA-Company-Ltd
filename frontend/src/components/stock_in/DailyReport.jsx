@@ -51,24 +51,24 @@ const DailyReport = () => {
         <div className="bg-blue-50 min-h-screen">
             <div className="bg-blue-200">
                 <h1 className="text-2xl ms-3 text-wrap font-bold text-amber-500">Reports</h1>
-                <div className="mt-3">
+                <div className="mt-3 ms-4">
                      <h1 className="text-xl font-bold text-amber-500">Quck Data</h1>
-                     <div>
-                        <div>
-                            <p>Total Stock In Value</p>
-                            {totals?.totalStockInAmouth}
+                     <div className="grid grid-cols-4 space-x-4 mt-3">
+                        <div className="bg-green-300 p-2 py-4 rounded-lg">
+                            <p className="text-center text-gray-700">Total Stock In Value</p>
+                            <p className="text-center font-bold">FRW: {totals?.totalStockInAmouth}</p>
                         </div>
-                        <div>
-                            <h1>Total Stock In Quantity</h1>
-                            {totals?.totalStockInQuantity}
+                        <div className="bg-amber-300 p-2 py-4 rounded-lg">
+                            <h1 className="text-center text-gray-700">Total Stock In Quantity</h1>
+                            <p className="text-center font-bold">{totals?.totalStockInQuantity}</p>
                         </div>
-                        <div>
-                            <h1>Total Stock Out Quantity</h1>
-                            {totals?.totalStockOutQuantity}
+                        <div className="bg-blue-300 p-2 py-4 rounded-lg">
+                            <h1  className="text-center text-gray-700">Total Stock Out Quantity</h1>
+                            <p className="text-center font-bold">{totals?.totalStockOutQuantity}</p>
                         </div>
-                        <div>
-                            <h1>Total Remaining stock</h1>
-                            {totals?.remainingStock}
+                        <div className="bg-cyan-300 p-2 py-4 rounded-lg me-3">
+                            <h1  className="text-center text-gray-700">Total Remaining stock</h1>
+                            <p className="text-center font-bold">{totals?.remainingStock} </p> 
                         </div>
                      </div>
                 </div>
