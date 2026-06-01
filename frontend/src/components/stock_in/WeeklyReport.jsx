@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const DailyReport = () => {
+const WeeklyReport = () => {
     const [stockInReport, setStockInReport] = useState(null);
     const [stockOutReport, setStockOutReport] = useState(null);
     
 
     const handleGetStockOutReport = async () => {
         try {
-           const res = await axios.get('http://localhost:3000/stockOut/report/daily');
+           const res = await axios.get('http://localhost:3000/stockOut/report/weekly');
            setStockOutReport(res.data.report);
         } catch (error) {
             console.error(error);
@@ -18,7 +18,7 @@ const DailyReport = () => {
 
     const handleGetStockInReport = async () => {
         try {
-           const res = await axios.get('http://localhost:3000/stockIn/report/daily');
+           const res = await axios.get('http://localhost:3000/stockIn/report/weekly');
            setStockInReport(res.data.report);
         } catch (error) {
             console.error(error);
@@ -36,7 +36,7 @@ const DailyReport = () => {
     return (
         <div className="bg-blue-50 min-h-screen">
             <div className="max-w-7xl mx-auto w-full">
-                <h1 className="text-xl text-center font-bold text-blue-500">Stock Out Daily Report</h1>
+                <h1 className="text-xl text-center font-bold text-blue-500">Stock Out Weekly Report</h1>
                 <table className="w-full">
                     <thead className="bg-amber-500 text-gray-800">
                         <tr>
@@ -66,7 +66,7 @@ const DailyReport = () => {
             </div>
             
             <div className="max-w-7xl mx-auto w-full mt-12">
-                <h1 className="text-xl text-center font-bold text-blue-500">Stock In Daily Report</h1>
+                <h1 className="text-xl text-center font-bold text-blue-500">Stock In Weekly Report</h1>
                 <table className="w-full">
                     <thead className="bg-amber-500 text-gray-800">
                         <tr>
@@ -101,4 +101,4 @@ const DailyReport = () => {
     )
 }
 
-export default DailyReport;
+export default WeeklyReport;
