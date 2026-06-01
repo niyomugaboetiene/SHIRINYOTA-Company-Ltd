@@ -17,11 +17,15 @@ import AddProduct from "./components/Products/AddProduct"
 import UpdateProduct from "./components/Products/UpdateProduct"
 
 import NavBar from "./components/dashboard/Nav";
+import Footer from "./components/dashboard/Footer"
 
 function App() {
 
   return (
     <BrowserRouter>
+    <div className="mb-38">
+      <NavBar />
+    </div>
        <Routes>
           <Route path="/report/daily" element={<DailyReport />}/>
           <Route path="/report/weekly" element={<WeeklyReport />}/>
@@ -39,7 +43,7 @@ function App() {
           <Route path="/product/list" element={<ProductList /> }/>
           <Route path="/product/update/:_id" element={<UpdateProduct />}/>
 
-          <Route path="/nav" element={<NavBar />}/>
+          <Route path="/nav" element={<Footer />}/>
        </Routes>
     </BrowserRouter>
   )

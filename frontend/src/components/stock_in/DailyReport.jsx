@@ -49,7 +49,7 @@ const DailyReport = () => {
 
     return (
         <div className="bg-blue-50 min-h-screen">
-            <div className="bg-blue-200 fixed top-0 left-0 right-0">
+            <div className="bg-blue-200 fixed top-35 left-0 right-0">
                 <h1 className="text-2xl ms-3 text-wrap font-bold text-amber-500">Reports</h1>
                 <div className="mt-3 ms-4">
                      <h1 className="text-xl font-bold text-amber-500">Quck Data</h1>
@@ -79,7 +79,7 @@ const DailyReport = () => {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto w-full mt-60">
+            <div className="max-w-7xl mx-auto w-full mt-100">
                 <h1 className="text-xl text-center font-bold text-blue-500">Stock Out Daily Report</h1>
                 <table className="w-full">
                     <thead className="bg-amber-500 text-gray-800">
