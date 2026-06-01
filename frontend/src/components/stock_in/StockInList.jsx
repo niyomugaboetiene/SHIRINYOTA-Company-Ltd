@@ -21,8 +21,16 @@ const StockInList = () => {
     }, []);
 
 
-    const handleDeleteStockOut = async () => {
-        
+    const handleDeleteStockOut = async (_id) => {
+        try {
+            const confrim = window.confirm("Are you sure ?");
+            if (confrim ){
+                await axios.delete(`http://localhost:3000/stockIn/delete/${_id}`);
+               await handleGetStockInReport();
+            }
+        } catch (err) {
+            console.error(err);
+        }
     }
     return (
         <div className="bg-blue-50 min-h-screen">
@@ -54,7 +62,12 @@ const StockInList = () => {
                                     <Link to={`/stockIn/update/${product._id}`} className="bg-amber-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors">Update</Link>
                                 </td>
                                 <td>
-                                   <Link className="bg-red-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors">Delete</Link>
+                                   <button
+                                    className="bg-red-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors"
+                                    onClick={() => handleDeleteStockOut(product._id)}
+                                  >
+                                    Delete
+                                </button>
                                 </td>
                             </tr>
                         ))}
