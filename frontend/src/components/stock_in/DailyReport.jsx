@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const DailyReport = () => {
     const [stockInReport, setStockInReport] = useState(null);
     const [stockOutReport, setStockOutReport] = useState(null);
+    const [totals, setTotals] = useState(null);
     
 
     const handleGetStockOutReport = async () => {
@@ -25,8 +26,21 @@ const DailyReport = () => {
         }
     }
 
+    const handleGetStockTotals = async () => {
+        try {
+           const res = await axios.get('http://localhost:3000/stockIn/report/totals');
+           setTotals(res.data.totals);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     useEffect(() => {
         handleGetStockInReport();
+    }, []);
+
+    useEffect(() => {
+        handleGetStockTotals();
     }, []); 
   
     useEffect(() => {
