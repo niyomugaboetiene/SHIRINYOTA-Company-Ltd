@@ -69,9 +69,9 @@ router.put('/update/:_id', async (req, res) => {
 
         if (Total_Price) updated.Total_Price = Total_Price;
 
-        const updatedStockIn = await Product.findByIdAndUpdate(_id, updated, { new: true });
+        const updatedStockIn = await Stock_In.findByIdAndUpdate(_id, updated, { new: true });
 
-        return res.status(200).json({ message: 'Updated product', updated: updatedStockIn });
+        return res.status(200).json({ message: 'Updated stock out', updated: updatedStockIn });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: 'Internal server error' });   

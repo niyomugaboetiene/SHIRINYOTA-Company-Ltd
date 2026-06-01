@@ -65,22 +65,27 @@ router.put('/update/:_id', async (req, res) => {
     try {
         const { _id } = req.params;
 
-        const { Product_Id, Date, Quantity, Unit_Price } = req.body;
+        const { Product_Id, Date, Quantity } = req.body;
 
         let updated = {};
 
         if (Product_Id) updated.Product_Id = Product_Id;
         if (Date) updated.Date = Date;
         if (Quantity) updated.Quantity = Quantity;
-        if (Unit_Price) updated.Unit_Price = Unit_Price;
        
-        const Total_Price = Number(Quantity) * Number(Unit_Price);
+        const stocksIn = await Stock_In.find({ Product_Id: Product_Id });
 
-        if (Total_Price) updated.Total_Price = Total_Price;
+        const totalQuantity = stocksIn.reduce((total, item) => {
+            return total + item.Quantity
+        }, 0);
 
-        const updatedStockIn = await Product.findByIdAndUpdate(_id, updated, { new: true });
+        if (Quantity > totalQuantity) {
+            return res.status(403).json({ messsage: `You dont have enough stock. your stock is ${totalQuantity}`})
+        }
 
-        return res.status(200).json({ message: 'Updated product', updated: updatedStockIn });
+        const updatedStockIn = await Stock_Out.findByIdAndUpdate(_id, updated, { new: true });
+
+        return res.status(200).json({ message: 'Updated Stock out', updated: updatedStockIn });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: 'Internal server error' });   
@@ -91,7 +96,7 @@ router.delete('/delete/:_id', async (req, res) => {
     try {
         const _id = req.params._id;
 
-        await Stock_In.findByIdAndDelete(_id);
+        await Stock_Out.findByIdAndDelete(_id);
 
         return res.status(200).json({ message: 'Deleted successfully' });
     } catch (err) {
