@@ -73,9 +73,9 @@ const DailyReport = () => {
                      </div>
                 </div>
                 <div className="mt-4 flex space-x-6 ms-4">
-                    <Link className="bg-green-300 py-2 px-6 text-gray-500 font-bold rounded-lg">Daily</Link>
-                    <Link className="bg-blue-300 py-2 px-6 text-gray-500 font-bold rounded-lg">Weekly</Link>
-                    <Link className="bg-amber-300 py-2 px-6 text-gray-500 font-bold rounded-lg">Monthly</Link>
+                    <Link className="bg-green-300 py-2 px-6 text-gray-500 font-bold rounded-lg" to={'/report/daily'}>Daily</Link>
+                    <Link className="bg-blue-300 py-2 px-6 text-gray-500 font-bold rounded-lg" to={'/report/weekly'}>Weekly</Link>
+                    <Link className="bg-amber-300 py-2 px-6 text-gray-500 font-bold rounded-lg" to={'/report/monthly'}>Monthly</Link>
                 </div>
             </div>
 
