@@ -67,6 +67,8 @@ router.put('/update/:_id', async (req, res) => {
        
         const Total_Price = Number(Quantity) * Number(Unit_Price);
 
+        if (Total_Price) updated.Total_Price = Total_Price;
+        
         const updatedStockIn = await Product.findByIdAndUpdate(_id, updated, { new: true });
 
         return res.status(200).json({ message: 'Updated product', updated: updatedStockIn });
