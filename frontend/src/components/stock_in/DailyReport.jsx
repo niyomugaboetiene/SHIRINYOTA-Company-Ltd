@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Report = () => {
+const DailyReport = () => {
     const [stockInReport, setStockInReport] = useState(null);
     const [stockOutReport, setStockOutReport] = useState(null);
     
@@ -43,6 +44,7 @@ const Report = () => {
                             <th>Product Name</th>
                             <th>Date</th>
                             <th>Quantity</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
@@ -53,6 +55,10 @@ const Report = () => {
                                 <td>{product.Product_Id?.Product_Name}</td>
                                 <td>{new Date(product.Date).toLocaleDateString()}</td>
                                 <td>{product.Quantity}</td>
+
+                                <td>
+                                    <Link>View</Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -70,18 +76,22 @@ const Report = () => {
                             <th>Quantity</th>
                             <th>Unit Price</th>
                             <th>Total Price</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {stockInReport?.map((product, index) => (
-                            <tr>
+                            <tr key={index}>
                                 <td>{product.Product_Id?.Product_Id}</td>
                                 <td>{product.Product_Id?.Product_Name}</td>
                                 <td>{new Date(product.Date).toLocaleDateString()}</td>
                                 <td>{product.Quantity}</td>
                                 <td>{product.Unit_Price}</td>
                                 <td>{product.Total_Price}</td>
+                                <td>
+                                    <Link>View</Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -90,3 +100,5 @@ const Report = () => {
         </div>
     )
 }
+
+export default DailyReport;
