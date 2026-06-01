@@ -52,6 +52,13 @@ router.get('/list/:_id', async (req, res) => {
 
 router.put('/update/:_id', async (req, res) => {
     try {
+        const { Product_Id, Product_Name } = req.body;
+
+        let updated = {};
+
+        if (Product_Id) updated.Product_Id = Product_Id;
+        if (Product_Name) updated.Product_Name = Product_Name;
+
         
     }
 })
