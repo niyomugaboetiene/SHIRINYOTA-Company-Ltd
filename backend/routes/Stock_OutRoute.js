@@ -80,7 +80,7 @@ router.put('/update/:_id', async (req, res) => {
         }, 0);
 
         if (Quantity > totalQuantity) {
-            return res.status(403).json({ messsage: `You dont have enough stock. your stock is ${totalQuantity}`})
+            return res.status(403).json({ message: `You dont have enough stock. your stock is ${totalQuantity}`})
         }
 
         const updatedStockIn = await Stock_Out.findByIdAndUpdate(_id, updated, { new: true });

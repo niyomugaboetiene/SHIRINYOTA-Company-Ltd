@@ -31,6 +31,7 @@ const UpdateStockOut = () => {
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);
+            console.log("Message", err?.response?.data?.message);
             setError(err?.response?.data?.message || "Error occured");
         }
     }
