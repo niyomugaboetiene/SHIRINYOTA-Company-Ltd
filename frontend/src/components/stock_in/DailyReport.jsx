@@ -60,6 +60,33 @@ const Report = () => {
                     </tbody>
                 </table>
             </div>
+            
+            <div>
+                <h1>Stock In Daily Report</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product Id</th>
+                            <th>Product Name</th>
+                            <th>Date</th>
+                            <th>Quantity</th>
+                            <th>Product Id</th>
+                            <th>Product Id</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {stockInReport?.map((product, index) => (
+                            <tr>
+                                <td>{product.Product_Id?.Product_Id}</td>
+                                <td>{product.Product_Id?.Product_Name}</td>
+                                <td>{new Date(product.Date).toLocaleDateString()}</td>
+                                <td>{product.Quantity}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }
