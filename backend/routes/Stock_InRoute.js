@@ -91,4 +91,75 @@ router.delete('/delete/:_id', async (req, res) => {
     }
 });
 
+
+// report
+router.get('/report/daily', async (req, res) => {
+    try {
+        const today = new Date();
+
+        const startOfTheDay = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate()
+        );
+
+        const endOfTheDay = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate() + 1
+        );
+        
+        const stockIn = await Stock_In.find({
+            Date: { $gte: startOfTheDay, $lte: endOfTheDay }
+        }).populate("Product_Id");
+
+        return res.status(200).json({ message: 'Daily report', report: stockIn });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+// weekly
+router.get('/report/weekly', async (req, res) => {
+    try {
+        const today = new Date();
+        const sevenDayAgo = new Date();
+        sevenDayAgo.setDate(today.getDate() - 7);
+
+        const stockIn = await Stock_In.find({
+            Date: {
+                $gte: sevenDayAgo, $lte: today
+            }
+        });
+
+        return res.status(200).json({ message: 'Weekly report', report: stockIn });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Intenal server error' });
+    }
+});
+
+// monthly
+router.get('/report/monthly', async (req, res) => {
+    try {
+        const today = new Date();
+        
+        const startOfTheMonth = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            1
+        );
+
+        const stockIn = await Stock_In.find({
+            Date: { $gte: startOfTheMonth }
+        });
+
+        return res.status(200).json({ message: 'Monthly report', report: stockIn });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 export default router;
