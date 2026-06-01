@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
     return (
-      <div>
+      <div className="fixed top-0 left-0 right-0">
         <div className="bg-blue-200">
              <div className="flex justify-end space-x-4 me-5 text-blue-500 font-bold py-2">
                 <Link>Login</Link>
