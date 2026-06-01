@@ -49,21 +49,25 @@ const DailyReport = () => {
 
     return (
         <div className="bg-blue-50 min-h-screen">
-            <div>
-                <h1>Reports</h1>
-                <div>
-                     <h1>Quck Data</h1>
+            <div className="bg-blue-200">
+                <h1 className="text-2xl ms-3 text-wrap font-bold text-amber-500">Reports</h1>
+                <div className="mt-3">
+                     <h1 className="text-xl font-bold text-amber-500">Quck Data</h1>
                      <div>
                         <div>
+                            <p>Total Stock In Value</p>
                             {totals?.totalStockInAmouth}
                         </div>
                         <div>
+                            <h1>Total Stock In Quantity</h1>
                             {totals?.totalStockInQuantity}
                         </div>
                         <div>
+                            <h1>Total Stock Out Quantity</h1>
                             {totals?.totalStockOutQuantity}
                         </div>
                         <div>
+                            <h1>Total Remaining stock</h1>
                             {totals?.remainingStock}
                         </div>
                      </div>
