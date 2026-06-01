@@ -132,6 +132,7 @@ router.get('/report/daily', async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 // weekly
 router.get('/report/weekly', async (req, res) => {
     try {
