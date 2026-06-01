@@ -20,10 +20,16 @@ const HandleAddStockIn = () => {
         }
     }
 
-
+    const handleGetProduc
     return (
         <div>
-            
+           <h1>Add Stock In Portal</h1>
+            <div>
+                 <label htmlFor="">Product</label>
+                 <select >
+
+                 </select>
+            </div>
         </div>
     )
 }
