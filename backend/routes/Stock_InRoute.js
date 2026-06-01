@@ -183,7 +183,7 @@ router.get('/report/totals', async (req, res) => {
 
         const remainingStock = totalStockInQuantity - totalStockOutQuantity;
 
-        return res.status(200).json({ message: 'Totals', totals: { totalStockInAmouth, totalStockInQuantity, totalStockOutQuantity }});
+        return res.status(200).json({ message: 'Totals', totals: { totalStockInAmouth, totalStockInQuantity, totalStockOutQuantity, remainingStock }});
     } catch (err) {
         console.error(err);
     }
