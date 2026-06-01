@@ -35,7 +35,7 @@ const MonthlyReport = () => {
 
     return (
         <div className="bg-blue-50 min-h-screen">
-            <div className="max-w-7xl mx-auto w-full">
+            <div className="max-w-7xl mx-auto w-full  mt-60">
                 <h1 className="text-xl text-center font-bold text-blue-500">Stock Out Monthly Report</h1>
                 <table className="w-full">
                     <thead className="bg-amber-500 text-gray-800">
