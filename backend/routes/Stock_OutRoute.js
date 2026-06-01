@@ -1,5 +1,6 @@
 import Stock_Out from "../schema/Stock_OutSchema.js";
 import express from "express";
+import Stock_In from "../schema/Stock_InSchema.js";
 
 const router = express.Router();
 
@@ -10,6 +11,16 @@ router.post('/addNew', async (req, res) => {
 
         if (!Product_Id || !Date || !Quantity) {
             return res.status(400).json({ message: 'Fill out missing fields' });
+        }
+
+        const stocksIn = await Stock_In.find({ Product_Id: Product_Id });
+
+        const totalQuantity = stocksIn.reduce((total, item) => {
+            return total + item.Quantity
+        }, 0);
+
+        if (Quantity > totalQuantity) {
+            return res.status(403).json({ messsage: `You dont have enough stock. your stock is ${totalQuantity}`})
         }
 
         const newStockOut = await Stock_Out.create({ Product_Id, Date, Quantity });
@@ -23,7 +34,7 @@ router.post('/addNew', async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        const list = await Stock_In.find();
+        const list = await Stock_Out.find();
 
         return res.status(200).json({ list: list });
     } catch (err) {
@@ -41,7 +52,7 @@ router.get('/list/:_id', async (req, res) => {
             return res.status(400).json({ message: 'Enter Id'});
         }
 
-        const list = await Stock_In.findById(_id);
+        const list = await Stock_Out.findById(_id);
 
         return res.status(200).json({ list: list });
     } catch (err) {
