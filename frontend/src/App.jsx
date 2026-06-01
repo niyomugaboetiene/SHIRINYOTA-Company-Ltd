@@ -6,6 +6,7 @@ import MonthlyReport from "./components/stock_in/MonthlyReport"
 
 import AddStockIn from "./components/stock_in/AddStockIn"
 import StockInList from "./components/stock_in/StockInList"
+import UpdateStockIn from "./components/stock_in/UpdateStockIn"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
 
           <Route path="/stockIn/add" element={<AddStockIn />}/>
           <Route path="/stockIn/list" element={<StockInList />}/>
+          <Route path="/stockIn/update/:_id" element={<UpdateStockIn />}/>
        </Routes>
     </BrowserRouter>
   )

@@ -47,7 +47,7 @@ const StockInList = () => {
                                 <td className="py-3 px-2 text-left">{product.Unit_Price}</td>
                                 <td className="py-3 px-2 text-left">{product.Total_Price}</td>
                                 <td>
-                                    <Link className="bg-amber-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors">Update</Link>
+                                    <Link to={`/stockIn/update/${product._id}`} className="bg-amber-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors">Update</Link>
                                 </td>
                                 <td>
                                    <Link className="bg-red-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors">Delete</Link>

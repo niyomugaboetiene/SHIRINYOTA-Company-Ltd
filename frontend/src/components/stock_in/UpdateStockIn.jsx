@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const AddStockIn = () => {
+const UpdateStockIn = () => {
     // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
     const [Product_Id, setProduct_Id] = useState("");
     const [Date, setDate] = useState("");
@@ -102,4 +102,4 @@ const AddStockIn = () => {
     )
 }
 
-export default AddStockIn;
+export default UpdateStockIn;
