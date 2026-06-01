@@ -43,14 +43,12 @@ const Report = () => {
                             <th>Product Name</th>
                             <th>Date</th>
                             <th>Quantity</th>
-                            <th>Product Id</th>
-                            <th>Product Id</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {stockOutReport?.map((product, index) => (
-                            <tr>
+                            <tr key={index}>
                                 <td>{product.Product_Id?.Product_Id}</td>
                                 <td>{product.Product_Id?.Product_Name}</td>
                                 <td>{new Date(product.Date).toLocaleDateString()}</td>
@@ -70,8 +68,8 @@ const Report = () => {
                             <th>Product Name</th>
                             <th>Date</th>
                             <th>Quantity</th>
-                            <th>Product Id</th>
-                            <th>Product Id</th>
+                            <th>Unit Price</th>
+                            <th>Total Price</th>
                         </tr>
                     </thead>
 
@@ -82,6 +80,8 @@ const Report = () => {
                                 <td>{product.Product_Id?.Product_Name}</td>
                                 <td>{new Date(product.Date).toLocaleDateString()}</td>
                                 <td>{product.Quantity}</td>
+                                <td>{product.Unit_Price}</td>
+                                <td>{product.Total_Price}</td>
                             </tr>
                         ))}
                     </tbody>
