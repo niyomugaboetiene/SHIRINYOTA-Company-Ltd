@@ -32,10 +32,28 @@ const AddStockIn = () => {
             console.error(err);
         }
     }
+    const handleGetExistingStock = async () => {
+        try {
+            const res = await axios.get(`http://localhost:3000/stockIn/list/${_id}`);
+            const data = res.data.list;
+
+            setProduct_Id(data.Product_Id);
+            setDate(new Date(data.Date).toISOString('').split('T'));
+            setQuantity(data.Quantity);
+            setUnit_Price(data.Unit_Price);
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     useEffect(() => {
         handleGetProduct();
     }, []);
+
+    useEffect(() => {
+        handleGetExistingStock();
+    }, [_id]);
+
     return (
         <div className="min-h-screen bg-blue-100 flex justify-center items-center">
             <div className="bg-white p-4 rounded-lg w-1/5">
@@ -48,7 +66,7 @@ const AddStockIn = () => {
            )}
             <div className="mt-2">
                  <label className="block text-blue-500">Product</label>
-                 <select onChange={(e) => setProduct_Id(e.target.value)} className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200">
+                 <select value={Product_Id} onChange={(e) => setProduct_Id(e.target.value)} className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200">
                     {product?.map((prod, index) => (
                         <option value={prod._id} key={index}>{prod.Product_Name}</option>
                     ))}
@@ -56,19 +74,19 @@ const AddStockIn = () => {
             </div>
             <div className="mt-2">
                 <label htmlFor="" className="text-blue-500 block">Date</label>
-                <input type="date" 
+                <input type="date"  value={Date}
                 className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
                 onChange={(e) => setDate(e.target.value)} />
             </div>
             <div className="mt-2">
                 <label htmlFor="" className="text-blue-500 block">Quantity</label>
-                <input type="number" 
+                <input type="number" value={Quantity}
                 className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
                 onChange={(e) => setQuantity(e.target.value)} />
             </div>
             <div className="mt-2">
                 <label htmlFor="" className="text-blue-500 block">Unit Price</label>
-                <input type="number" 
+                <input type="number"  value={Unit_Price}
                 className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
                 onChange={(e) => setUnit_Price(e.target.value)} />
             </div>
