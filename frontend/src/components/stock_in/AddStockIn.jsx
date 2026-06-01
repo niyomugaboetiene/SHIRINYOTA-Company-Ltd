@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 
 const HandleAddStockIn = () => {
@@ -9,6 +10,7 @@ const HandleAddStockIn = () => {
     const [Unit_Price, setUnit_Price] = useState(0);
     const [message, setMessage] = useState("");
     const [error, setError] = useState(""); 
+    const [product, setProduct] = useState(null);
 
     const handleAddStockIn = async () => {
         try {
@@ -20,7 +22,18 @@ const HandleAddStockIn = () => {
         }
     }
 
-    const handleGetProduc
+    const handleGetProduct = async () => {
+        try {
+            const res = await axios.get('http://localhost:3000/product/list');
+            setProduct(res.data.list);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    useEffect(() => {
+        handleGetProduct();
+    }, []);
     return (
         <div>
            <h1>Add Stock In Portal</h1>
