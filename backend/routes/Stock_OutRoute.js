@@ -124,7 +124,7 @@ router.get('/report/daily', async (req, res) => {
 
         const stockOut = await Stock_Out.find({
             Date: { $gte: startOfTheDay, $lte: endOfTheDay }
-        });
+        }).populate("Product_Id");
 
         return res.status(200).json({ message: 'Daily report', report: stockOut });
     } catch (err) {
@@ -133,4 +133,5 @@ router.get('/report/daily', async (req, res) => {
     }
 });
 
+// router.get('/report/')
 export default router;
