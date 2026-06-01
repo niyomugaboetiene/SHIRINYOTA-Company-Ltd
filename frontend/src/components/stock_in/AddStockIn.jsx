@@ -18,7 +18,7 @@ const AddStockIn = () => {
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);
-            setError(err?.response?.data || "Error occured");
+            setError(err?.response?.data?.message || "Error occured");
         }
     }
 
