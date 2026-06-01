@@ -29,7 +29,7 @@ const UpdateStockIn = () => {
 
     const handleUpdateStockIn = async () => {
         try {
-            const res = await axios.put(`http://localhost:3000/stockIn/update//${_id}`, { Product_Id, Date, Quantity, Unit_Price });
+            const res = await axios.put(`http://localhost:3000/stockIn/update/${_id}`, { Product_Id, Date, Quantity, Unit_Price });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);
