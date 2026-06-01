@@ -122,7 +122,15 @@ router.get('/report/daily', async (req, res) => {
             today.getDate() + 1
         );
 
-        
+        const stockOut = Stock_Out.find({
+            Date: { $gte: startOfTheDay, $lte: endOfTheDay }
+        });
+
+        return res.status(200).json({ message: 'Daily report', report: stockOut });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
     }
-})
+});
+
 export default router;
