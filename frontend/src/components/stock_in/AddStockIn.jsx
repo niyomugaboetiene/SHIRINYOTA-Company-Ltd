@@ -35,31 +35,49 @@ const AddStockIn = () => {
         handleGetProduct();
     }, []);
     return (
-        <div>
-           <h1>Add Stock In Portal</h1>
-            <div>
-                 <label>Product</label>
-                 <select onChange={(e) => setProduct_Id(e.target.value)}>
+        <div className="min-h-screen bg-blue-100 flex justify-center items-center">
+            <div className="bg-white p-4 rounded-lg w-1/5">
+           <h1 className="text-center text-xl text-blue-500 font-bold">Add Stock In Portal</h1>
+           {message && (
+            <p>{message}</p>
+           )}
+           {error && (
+            <p>{error}</p>
+           )}
+            <div className="mt-2">
+                 <label className="block text-blue-500">Product</label>
+                 <select onChange={(e) => setProduct_Id(e.target.value)} className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200">
                     {product?.map((prod, index) => (
                         <option value={prod._id} key={index}>{prod.Product_Name}</option>
                     ))}
                  </select>
             </div>
-            <div>
-                <label htmlFor="">Date</label>
-                <input type="date" onChange={(e) => setDate(e.target.value)} />
+            <div className="mt-2">
+                <label htmlFor="" className="text-blue-500 block">Date</label>
+                <input type="date" 
+                className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
+                onChange={(e) => setDate(e.target.value)} />
             </div>
-            {/* Quantity,Unit_Price */}
-            <div>
-                <label htmlFor="">Quantity</label>
-                <input type="number" onChange={(e) => setQuantity(e.target.value)} />
+            <div className="mt-2">
+                <label htmlFor="" className="text-blue-500 block">Quantity</label>
+                <input type="number" 
+                className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
+                onChange={(e) => setQuantity(e.target.value)} />
             </div>
-            <div>
-                <label htmlFor="">Unit Price</label>
-                <input type="number" onChange={(e) => setUnit_Price(e.target.value)} />
+            <div className="mt-2">
+                <label htmlFor="" className="text-blue-500 block">Unit Price</label>
+                <input type="number" 
+                className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
+                onChange={(e) => setUnit_Price(e.target.value)} />
             </div>
 
-            <button onClick={handleAddStockIn}>Save</button>
+            <button
+              className="mt-4 bg-blue-300 w-full py-3 px-3 rounded-full text-white font-bold hover:bg-blue-400 transition-colors" 
+              onClick={handleAddStockIn}
+            >
+                Save
+            </button>
+        </div>
         </div>
     )
 }
