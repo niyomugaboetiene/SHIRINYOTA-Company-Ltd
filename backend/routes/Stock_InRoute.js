@@ -6,13 +6,14 @@ const router = express.Router();
 router.post('/addNew', async (req, res) => {
     try {
         // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
-        const { Product_Id, Date, Quantity, Unit_Price, Total_Price } = req.body;
+        const { Product_Id, Date, Quantity, Unit_Price } = req.body;
 
         if (!Product_Id || !Date || !Quantity || !Unit_Price) {
             return res.status(400).json({ message: 'Fill out missing fields' });
         }
 
-        const newProduct = await Product.create({ Product_Id, Product_Name });
+        const Total_Price = Number(Quantity) * Number(Unit_Price);
+        const newStockIn = await Stock_In.create({ Product_Id, Date, Quantity, Unit_Price, Total_Price });
 
         return res.status(201).json({ message: 'New Product', product: newProduct });
     } catch (err) {
