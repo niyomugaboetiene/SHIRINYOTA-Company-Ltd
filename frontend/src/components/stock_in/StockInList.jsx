@@ -20,6 +20,10 @@ const StockInList = () => {
         handleGetStockInReport();
     }, []);
 
+
+    const handleDeleteStockOut = async () => {
+        
+    }
     return (
         <div className="bg-blue-50 min-h-screen">
             <div className="max-w-7xl mx-auto w-ful">
