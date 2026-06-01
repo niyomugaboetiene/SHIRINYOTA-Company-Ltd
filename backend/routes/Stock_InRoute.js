@@ -13,9 +13,10 @@ router.post('/addNew', async (req, res) => {
         }
 
         const Total_Price = Number(Quantity) * Number(Unit_Price);
+        
         const newStockIn = await Stock_In.create({ Product_Id, Date, Quantity, Unit_Price, Total_Price });
 
-        return res.status(201).json({ message: 'New Product', product: newProduct });
+        return res.status(201).json({ message: 'New Stock In', stockIn: newStockIn });
     } catch (err) {
         console.error(err);
         return res.status(500).json({ message: 'Internal server error' });
