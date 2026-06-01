@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
-const UpdateStockIn = () => {
+const UpdateProduct = () => {
     // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
     const [Product_Id, setProduct_Id] = useState("");
     const [Product_Name, setProduct_Name] = useState("");
@@ -64,7 +64,7 @@ const UpdateStockIn = () => {
 
             <button
               className="mt-4 bg-blue-300 w-full py-3 px-3 rounded-full text-white font-bold hover:bg-blue-400 transition-colors" 
-              onClick={handleAddProduct}
+              onClick={handleUpdateProducts}
             >
                 Save
             </button>
@@ -73,4 +73,4 @@ const UpdateStockIn = () => {
     )
 }
 
-export default UpdateStockIn;
+export default UpdateProduct;
