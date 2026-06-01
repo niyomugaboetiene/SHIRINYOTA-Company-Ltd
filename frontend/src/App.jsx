@@ -16,6 +16,8 @@ import ProductList from "./components/Products/ProductList";
 import AddProduct from "./components/Products/AddProduct"
 import UpdateProduct from "./components/Products/UpdateProduct"
 
+import NavBar from "./components/dashboard/Nav";
+
 function App() {
 
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/product/add" element={<AddProduct /> }/>
           <Route path="/product/list" element={<ProductList /> }/>
           <Route path="/product/update/:_id" element={<UpdateProduct />}/>
+
+          <Route path="/nav" element={<NavBar />}/>
        </Routes>
     </BrowserRouter>
   )
