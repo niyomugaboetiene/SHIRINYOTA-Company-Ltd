@@ -122,7 +122,7 @@ router.get('/report/daily', async (req, res) => {
             today.getDate() + 1
         );
 
-        const stockOut = Stock_Out.find({
+        const stockOut = await Stock_Out.find({
             Date: { $gte: startOfTheDay, $lte: endOfTheDay }
         });
 
