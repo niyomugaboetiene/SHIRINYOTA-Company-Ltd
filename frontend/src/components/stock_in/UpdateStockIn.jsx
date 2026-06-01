@@ -14,6 +14,19 @@ const UpdateStockIn = () => {
     const { _id } = useParams();
     const [product, setProduct] = useState(null);
 
+     const handleGetExistingStock = async () => {
+        try {
+            const res = await axios.get(`http://localhost:3000/stockIn/list/${_id}`);
+            const data = res.data.list;
+
+            setProduct_Id(data.Product_Id);
+            setQuantity(data.Quantity);
+            setUnit_Price(data.Unit_Price);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     const handleUpdateStockIn = async () => {
         try {
             const res = await axios.put(`http://localhost:3000/stockIn/update//${_id}`, { Product_Id, Date, Quantity, Unit_Price });
@@ -28,18 +41,6 @@ const UpdateStockIn = () => {
         try {
             const res = await axios.get('http://localhost:3000/product/list');
             setProduct(res.data.list);
-        } catch (err) {
-            console.error(err);
-        }
-    }
-    const handleGetExistingStock = async () => {
-        try {
-            const res = await axios.get(`http://localhost:3000/stockIn/list/${_id}`);
-            const data = res.data.list;
-
-            setProduct_Id(data.Product_Id);
-            setQuantity(data.Quantity);
-            setUnit_Price(data.Unit_Price);
         } catch (err) {
             console.error(err);
         }
