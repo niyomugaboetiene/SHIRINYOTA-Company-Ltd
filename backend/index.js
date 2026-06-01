@@ -3,8 +3,11 @@ import cors from "cors";
 import ProductRoute from "./routes/ProductRoute.js";
 import StockInRoute from "./routes/Stock_InRoute.js";
 import StockOutRoute from "./routes/Stock_OutRoute.js";
+import UserRoute from "./routes/UserRoute.js";
+
 import connection from "./config/conn.js";
 import session from "express-session";
+
 
 connection();
 
@@ -22,6 +25,7 @@ app.use(session({
 app.use('/product', ProductRoute);
 app.use('/stockIn', StockInRoute);
 app.use('/stockOut', StockOutRoute);
+app.use('/user', UserRoute);
 
 
 app.listen(3000, () => {

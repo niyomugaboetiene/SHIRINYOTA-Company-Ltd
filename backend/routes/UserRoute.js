@@ -63,3 +63,5 @@ router.post('/login', async (req, res) => {
         console.error(err);
     }
 });
+
+export default router;
