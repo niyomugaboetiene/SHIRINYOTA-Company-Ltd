@@ -52,6 +52,8 @@ router.get('/list/:_id', async (req, res) => {
 
 router.put('/update/:_id', async (req, res) => {
     try {
+        const { _id } = req.params;
+
         const { Product_Id, Product_Name } = req.body;
 
         let updated = {};
@@ -59,6 +61,24 @@ router.put('/update/:_id', async (req, res) => {
         if (Product_Id) updated.Product_Id = Product_Id;
         if (Product_Name) updated.Product_Name = Product_Name;
 
-        
+        const updatedProduct = await Product.findByIdAndUpdate(_id, updated, { new: true });
+
+        return res.status(200).json({ message: 'Updated product', updated: updatedProduct });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });   
     }
-})
+});
+
+router.delete('/delete/:_id', async (req, res) => {
+    try {
+        const _id = req.params._id;
+
+        await Product.findByIdAndDelete(_id);
+
+        return res.status(200).json({ message: 'Deleted successfully' });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
