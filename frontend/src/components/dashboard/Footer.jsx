@@ -3,8 +3,12 @@ import {FaFacebook, FaInstagram, FaYoutube, FaTwitter} from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div>
-            <div>
+        <div className="bg-black text-white fixed bottom-0 left-0 right-0">
+            <div className="flex justify-between h-70">
+                <div className="bg-linear-to-bl from-blue-500 to-purple-500 via-green-500 text-transparent bg-clip-text">
+                    <h1 className="text-2xl ms-10 mt-8 font-bold">SHIRINYOTA</h1>
+                    <p className="text-white ms-10">SHIRINYOTA Company Ltd, located in Rwanda.</p>
+                </div>
                 <div>
                     <h1>Quick Links</h1>
                     <div>
