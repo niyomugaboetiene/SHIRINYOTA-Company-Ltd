@@ -38,7 +38,6 @@ const UpdateStockIn = () => {
             const data = res.data.list;
 
             setProduct_Id(data.Product_Id);
-            setDate(new Date(data.Date).toISOString('').split('T'));
             setQuantity(data.Quantity);
             setUnit_Price(data.Unit_Price);
         } catch (err) {
