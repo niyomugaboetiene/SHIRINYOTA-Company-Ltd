@@ -26,7 +26,7 @@ router.post('/addNew', async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        const list = await Stock_In.find();
+        const list = await Stock_In.find().populate("Product_Id");
 
         return res.status(200).json({ list: list });
     } catch (err) {
@@ -44,7 +44,7 @@ router.get('/list/:_id', async (req, res) => {
             return res.status(400).json({ message: 'Enter Id'});
         }
 
-        const list = await Stock_In.findById(_id);
+        const list = await Stock_In.findById(_id).populate("Product_Id");
 
         return res.status(200).json({ list: list });
     } catch (err) {
