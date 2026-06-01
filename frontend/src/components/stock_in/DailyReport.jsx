@@ -52,7 +52,26 @@ const DailyReport = () => {
             <div>
                 <h1>Reports</h1>
                 <div>
-                     
+                     <h1>Quck Data</h1>
+                     <div>
+                        <div>
+                            {totals?.totalStockInAmouth}
+                        </div>
+                        <div>
+                            {totals?.totalStockInQuantity}
+                        </div>
+                        <div>
+                            {totals?.totalStockOutQuantity}
+                        </div>
+                        <div>
+                            {totals?.remainingStock}
+                        </div>
+                     </div>
+                </div>
+                <div>
+                    <Link>Daily</Link>
+                    <Link>Weekly</Link>
+                    <Link>Monthly</Link>
                 </div>
             </div>
             <div className="max-w-7xl mx-auto w-full">
