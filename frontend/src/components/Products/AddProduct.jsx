@@ -10,9 +10,9 @@ const AddProduct = () => {
     const [error, setError] = useState(""); 
     const [product, setProduct] = useState(null);
 
-    const handleAddStockOut = async () => {
+    const handleAddProduct = async () => {
         try {
-            const res = await axios.post('http://localhost:3000/product/addNew', { Product_Id, setProduct_Name });
+            const res = await axios.post('http://localhost:3000/product/addNew', { Product_Id, Product_Name });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);
@@ -23,37 +23,30 @@ const AddProduct = () => {
     return (
         <div className="min-h-screen bg-blue-100 flex justify-center items-center">
             <div className="bg-white p-4 rounded-lg w-1/5">
-           <h1 className="text-center text-xl text-blue-500 font-bold">Add Stock Out Portal</h1>
+           <h1 className="text-center text-xl text-blue-500 font-bold">Add Product Portal</h1>
            {message && (
             <p>{message}</p>
            )}
            {error && (
             <p>{error}</p>
            )}
+
             <div className="mt-2">
-                 <label className="block text-blue-500">Product</label>
-                 <select onChange={(e) => setProduct_Id(e.target.value)} className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200">
-                    {product?.map((prod, index) => (
-                        <option value={prod._id} key={index}>{prod.Product_Name}</option>
-                    ))}
-                 </select>
+                <label htmlFor="" className="text-blue-500 block">Product Id</label>
+                <input type="text" 
+                className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
+                onChange={(e) => setProduct_Id(e.target.value)} />
             </div>
             <div className="mt-2">
-                <label htmlFor="" className="text-blue-500 block">Date</label>
-                <input type="date" 
+                <label htmlFor="" className="text-blue-500 block">Product Name</label>
+                <input type="text" 
                 className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
-                onChange={(e) => setDate(e.target.value)} />
-            </div>
-            <div className="mt-2">
-                <label htmlFor="" className="text-blue-500 block">Quantity</label>
-                <input type="number" 
-                className="bg-gray-300 w-full py-3 px-3 rounded-full text-white font-bold focus:outline-2 focus:outline-blue-200"
-                onChange={(e) => setQuantity(e.target.value)} />
+                onChange={(e) => setProduct_Name(e.target.value)} />
             </div>
 
             <button
               className="mt-4 bg-blue-300 w-full py-3 px-3 rounded-full text-white font-bold hover:bg-blue-400 transition-colors" 
-              onClick={handleAddStockOut}
+              onClick={handleAddProduct}
             >
                 Save
             </button>
