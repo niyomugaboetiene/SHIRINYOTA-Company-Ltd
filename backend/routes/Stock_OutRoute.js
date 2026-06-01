@@ -121,7 +121,7 @@ router.get('/report/daily', async (req, res) => {
             today.getMonth(),
             today.getDate() + 1
         );
-
+        
         const stockOut = await Stock_Out.find({
             Date: { $gte: startOfTheDay, $lte: endOfTheDay }
         }).populate("Product_Id");
@@ -132,6 +132,47 @@ router.get('/report/daily', async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 });
+// weekly
+router.get('/report/weekly', async (req, res) => {
+    try {
+        const today = new Date();
+        const sevenDayAgo = new Date();
+        sevenDayAgo.setDate(today.getDate() - 7);
 
-// router.get('/report/')
+        const stockOut = await Stock_Out.find({
+            Date: {
+                $gte: sevenDayAgo, $lte: today
+            }
+        });
+
+        return res.status(200).json({ message: 'Weekly report', report: stockOut });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Intenal server error' });
+    }
+});
+
+// monthly
+router.get('/report/monthly', async (req, res) => {
+    try {
+        const today = new Date();
+        
+        const startOfTheMonth = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            1
+        );
+
+        const stockOut = await Stock_Out.find({
+            Date: { $gte: startOfTheMonth }
+        });
+
+        return res.status(200).json({ message: 'Monthly report', report: stockOut });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
 export default router;
