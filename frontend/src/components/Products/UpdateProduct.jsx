@@ -11,7 +11,6 @@ const UpdateStockIn = () => {
     const [error, setError] = useState(""); 
 
     const { _id } = useParams();
-    const [product, setProduct] = useState(null);
 
      const handleGetExistingStock = async () => {
         try {
@@ -27,7 +26,7 @@ const UpdateStockIn = () => {
 
     const handleUpdateProducts = async () => {
         try {
-            const res = await axios.put(`http://localhost:3000/stockIn/update/${_id}`, { Product_Id, Date, Quantity, Unit_Price });
+            const res = await axios.put(`http://localhost:3000/stockIn/update/${_id}`, { Product_Id, Product_Name });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);
@@ -42,7 +41,7 @@ const UpdateStockIn = () => {
     return (
         <div className="min-h-screen bg-blue-100 flex justify-center items-center">
             <div className="bg-white p-4 rounded-lg w-1/5">
-           <h1 className="text-center text-xl text-blue-500 font-bold">Add Product Portal</h1>
+           <h1 className="text-center text-xl text-blue-500 font-bold">Update Product Portal</h1>
            {message && (
             <p>{message}</p>
            )}
