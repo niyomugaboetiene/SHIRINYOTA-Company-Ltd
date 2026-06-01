@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const WeeklyReport = () => {
+const MonthlyReport = () => {
     const [stockInReport, setStockInReport] = useState(null);
     const [stockOutReport, setStockOutReport] = useState(null);
     
@@ -101,4 +101,4 @@ const WeeklyReport = () => {
     )
 }
 
-export default WeeklyReport;
+export default MonthlyReport;
