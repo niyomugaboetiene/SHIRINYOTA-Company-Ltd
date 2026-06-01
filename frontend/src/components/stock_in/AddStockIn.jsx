@@ -40,7 +40,9 @@ const HandleAddStockIn = () => {
             <div>
                  <label htmlFor="">Product</label>
                  <select >
-
+                    {product?.map((prod, index) => (
+                        <option value={prod._id} key={index}>{prod.Product_Name}</option>
+                    ))}
                  </select>
             </div>
         </div>
