@@ -15,8 +15,9 @@ app.use(express.json());
 app.use(session({
     secret: 'my-secret-key',
     resave: false,
-    saveUninitialized: true
-}))
+    saveUninitialized: true,
+    cookie: { httpOnly: true }
+}));
 
 app.use('/product', ProductRoute);
 app.use('/stockIn', StockInRoute);
