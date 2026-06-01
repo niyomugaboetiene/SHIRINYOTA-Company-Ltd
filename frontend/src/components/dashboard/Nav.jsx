@@ -9,10 +9,10 @@ const NavBar = () => {
                 </div>
                 <div className="mt-10">
                     <nav className="flex space-x-5 text-blue-500">
-                        <Link>Home</Link>
-                        <Link>Products</Link>
-                        <Link>Stock In</Link>
-                        <Link>Stock Out</Link>
+                        <Link to={'/report/daily'}>Home</Link>
+                        <Link to={'/product/list'}>Products</Link>
+                        <Link to={'/stockIn/list'}>Stock In</Link>
+                        <Link to={'/stockOut/list'}>Stock Out</Link>
                     </nav>
                 </div>
                 <div>
