@@ -5,26 +5,26 @@ const Footer = () => {
     return (
         <div className="bg-black text-white fixed bottom-0 left-0 right-0">
             <div className="flex justify-between h-70">
-                <div className="bg-linear-to-bl from-blue-500 to-purple-500 via-green-500 text-transparent bg-clip-text">
+                <div className="bg-linear-to-bl from-green-500 to-purple-500 via-blue-500 text-transparent bg-clip-text">
                     <h1 className="text-2xl ms-10 mt-8 font-bold">SHIRINYOTA</h1>
                     <p className="text-white ms-10">SHIRINYOTA Company Ltd, located in Rwanda.</p>
                 </div>
-                <div>
-                    <h1>Quick Links</h1>
-                    <div>
-                    <Link>Home</Link>
-                    <Link>Products</Link>
-                    <Link>Stock In</Link>
-                    <Link>Stock Out</Link>
+                <div className="mt-5">
+                    <h1 className="text-xl font-bold text-blue-500 border-s-3 border-green-500">Quick Links</h1>
+                    <div className="space-y-5 grid mt-4">
+                    <Link to={'/report/daily'}>Home</Link>
+                    <Link to={'/product/list'}>Products</Link>
+                    <Link to={'/stockIn/list'}>Stock In</Link>
+                    <Link to={'/stockOut/list'}>Stock Out</Link>
                     </div>
                 </div>
-                <div>
-                    <h1>Contacts</h1>
-                    <p>niyomugaboetiene53@gmail.com</p>
-                    <p>072818429</p>
+                <div className="mt-5">
+                    <h1 className="text-xl font-bold text-blue-500 border-s-3 border-purple-500">Contacts</h1>
+                    <p className="mt-3 text-lg hover:underline">niyomugaboetiene53@gmail.com</p>
+                    <p className="mt-3 text-lg hover:underline">Tel: 072818429</p>
                 </div>
-                <div>
-                    <h1>Lets Go Social</h1>
+                <div className="mt-5 me-5">
+                    <h1 className="text-xl font-bold text-blue-500 border-s-3 border-purple-500">Lets Go Social</h1>
                      <div>
                         <p><FaFacebook /></p>
                         <p><FaInstagram /></p>
