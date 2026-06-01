@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 
-const HandleAddStockIn = () => {
+const AddStockIn = () => {
     // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
     const [Product_Id, setProduct_Id] = useState("");
     const [Date, setDate] = useState("");
@@ -38,13 +38,30 @@ const HandleAddStockIn = () => {
         <div>
            <h1>Add Stock In Portal</h1>
             <div>
-                 <label htmlFor="">Product</label>
-                 <select >
+                 <label>Product</label>
+                 <select onChange={(e) => setProduct_Id(e.target.value)}>
                     {product?.map((prod, index) => (
                         <option value={prod._id} key={index}>{prod.Product_Name}</option>
                     ))}
                  </select>
             </div>
+            <div>
+                <label htmlFor="">Date</label>
+                <input type="date" onChange={(e) => setDate(e.target.value)} />
+            </div>
+            {/* Quantity,Unit_Price */}
+            <div>
+                <label htmlFor="">Quantity</label>
+                <input type="number" onChange={(e) => setQuantity(e.target.value)} />
+            </div>
+            <div>
+                <label htmlFor="">Unit Price</label>
+                <input type="number" onChange={(e) => setUnit_Price(e.target.value)} />
+            </div>
+
+            <button onClick={handleAddStockIn}>Save</button>
         </div>
     )
 }
+
+export default AddStockIn;
