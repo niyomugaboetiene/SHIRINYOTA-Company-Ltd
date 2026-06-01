@@ -25,11 +25,11 @@ const Footer = () => {
                 </div>
                 <div className="mt-5 me-5">
                     <h1 className="text-xl font-bold text-blue-500 border-s-3 border-purple-500">Lets Go Social</h1>
-                     <div>
-                        <p><FaFacebook /></p>
-                        <p><FaInstagram /></p>
-                        <p><FaYoutube /></p>
-                        <p><FaTwitter /></p>
+                     <div className="grid grid-cols-2 mt-2">
+                        <p className="bg-blue-500 p-3 flex justify-center items-center rounded-lg me-2"><FaFacebook /></p>
+                        <p className="bg-purple-500 p-3 flex justify-center items-center rounded-lg me-2"><FaInstagram /></p>
+                        <p className="bg-red-500 p-3 flex justify-center items-center rounded-lg mt-2 me-2"><FaYoutube /></p>
+                        <p className="bg-sky-500 p-3 flex justify-center items-center rounded-lg mt-2 me-2"><FaTwitter /></p>
                      </div>
                 </div>
             </div>
