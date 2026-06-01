@@ -144,7 +144,7 @@ router.get('/report/weekly', async (req, res) => {
             Date: {
                 $gte: sevenDayAgo, $lte: today
             }
-        });
+        }).populate("Product_Id");
 
         return res.status(200).json({ message: 'Weekly report', report: stockOut });
     } catch (err) {
@@ -166,7 +166,7 @@ router.get('/report/monthly', async (req, res) => {
 
         const stockOut = await Stock_Out.find({
             Date: { $gte: startOfTheMonth }
-        });
+        }).populate("Product_Id");
 
         return res.status(200).json({ message: 'Monthly report', report: stockOut });
     } catch (err) {

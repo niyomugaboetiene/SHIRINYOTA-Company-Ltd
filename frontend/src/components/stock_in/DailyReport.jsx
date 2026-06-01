@@ -31,4 +31,18 @@ const Report = () => {
     useEffect(() => {
         handleGetStockOutReport();
     }, []);
+
+    return (
+        <div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    )
 }
