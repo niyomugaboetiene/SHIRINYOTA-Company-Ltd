@@ -19,4 +19,39 @@ router.post('/addNew', async (req, res) => {
         console.error(err);
         return res.status(500).json({ message: 'Internal server error' });
     }
+});
+
+router.get('/list', async (req, res) => {
+    try {
+        const list = await Product.find();
+
+        return res.status(200).json({ list: list });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+
+router.get('/list/:_id', async (req, res) => {
+    try {
+        const _id = req.params._id;
+
+        if (!_id) {
+            return res.status(400).json({ message: 'Enter Id'});
+        }
+
+        const list = await Product.findById(_id);
+
+        return res.status(200).json({ list: list });
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
+router.put('/update/:_id', async (req, res) => {
+    try {
+        
+    }
 })
