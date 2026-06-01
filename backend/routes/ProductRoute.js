@@ -9,7 +9,9 @@ router.post('/addNew', async (req, res) => {
         const { Product_Id, Product_Name } = req.body;
 
         if (!Product_Id || !Product_Name) {
-            return res.status()
+            return res.status(400).json({ message: 'Fill out missing fields' });
         }
+
+        
     }
 })
