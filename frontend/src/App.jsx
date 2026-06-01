@@ -11,6 +11,11 @@ import UpdateStockIn from "./components/stock_in/UpdateStockIn"
 import StockOutList from "./components/stock_out/StockOutList"
 import AddStockOut from "./components/stock_out/AddStockOut"
 import UpdateStockOut from "./components/stock_out/UpdateStockOut"
+
+import ProductList from "./components/Products/ProductList";
+import AddProduct from "./components/Products/AddProduct"
+import UpdateProduct from "./components/Products/UpdateProduct"
+
 function App() {
 
   return (
@@ -27,6 +32,10 @@ function App() {
           <Route path="/stockOut/add" element={<AddStockOut /> }/>
           <Route path="/stockOut/list" element={<StockOutList /> }/>
           <Route path="/stockOut/update/:_id" element={<UpdateStockOut />}/>
+
+          <Route path="/product/add" element={<AddProduct /> }/>
+          <Route path="/product/list" element={<ProductList /> }/>
+          <Route path="/product/update/:_id" element={<UpdateProduct />}/>
        </Routes>
     </BrowserRouter>
   )

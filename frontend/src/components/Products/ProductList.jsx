@@ -9,7 +9,7 @@ const ProductList = () => {
     const handleGetProduct = async () => {
         try {
            const res = await axios.get('http://localhost:3000/product/list');
-           setStockInReport(res.data.list);
+           setProduct(res.data.list);
         } catch (error) {
             console.error(error);
         }
@@ -46,7 +46,7 @@ const ProductList = () => {
                     </thead>
 
                     <tbody>
-                        {stockInReport?.map((product, index) => (
+                        {product?.map((product, index) => (
                             <tr key={index} className="bg-blue-100 text-gray-800">
                                 <td className="py-3 px-2 text-left">{product.Product_Id}</td>
                                 <td className="py-3 px-2 text-left">{product.Product_Name}</td>
