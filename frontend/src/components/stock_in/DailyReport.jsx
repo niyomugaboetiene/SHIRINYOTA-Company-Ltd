@@ -35,6 +35,12 @@ const DailyReport = () => {
 
     return (
         <div className="bg-blue-50 min-h-screen">
+            <div>
+                <h1>Reports</h1>
+                <div>
+                     
+                </div>
+            </div>
             <div className="max-w-7xl mx-auto w-full">
                 <h1 className="text-xl text-center font-bold text-blue-500">Stock Out Daily Report</h1>
                 <table className="w-full">

@@ -1,5 +1,6 @@
 import Stock_In from "../schema/Stock_InSchema.js";
 import express from "express";
+import Stock_Out from "../schema/Stock_OutSchema.js";
 
 const router = express.Router();
 
@@ -162,4 +163,29 @@ router.get('/report/monthly', async (req, res) => {
     }
 });
 
+// totals
+router.get('/report/totals', async (req, res) => {
+    try {
+        const stockOut = await Stock_Out.find();
+        const stockIn = await Stock_In.find();
+
+        const totalStockInQuantity = stockIn.reduce((item, total) => {
+            return item + total.Quantity
+        }, 0);
+        
+        const totalStockInAmouth = stockIn.reduce((item, total) => {
+            return item + total.Total_Price
+        }, 0);
+
+        const totalStockOutQuantity = stockOut.reduce((item, total) => {
+            return item + total.Quantity
+        }, 0);
+
+        const remainingStock = totalStockInQuantity - totalStockOutQuantity;
+
+        return res.status(200).json({ message: 'Totals', totals: { totalStockInAmouth, totalStockInQuantity, totalStockOutQuantity }});
+    } catch (err) {
+        console.error(err);
+    }
+})
 export default router;
