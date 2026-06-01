@@ -13,7 +13,7 @@ router.post('/addNew', async (req, res) => {
         }
 
         const Total_Price = Number(Quantity) * Number(Unit_Price);
-        
+
         const newStockIn = await Stock_In.create({ Product_Id, Date, Quantity, Unit_Price, Total_Price });
 
         return res.status(201).json({ message: 'New Stock In', stockIn: newStockIn });
@@ -25,7 +25,7 @@ router.post('/addNew', async (req, res) => {
 
 router.get('/list', async (req, res) => {
     try {
-        const list = await Product.find();
+        const list = await Stock_In.find();
 
         return res.status(200).json({ list: list });
     } catch (err) {
@@ -43,7 +43,7 @@ router.get('/list/:_id', async (req, res) => {
             return res.status(400).json({ message: 'Enter Id'});
         }
 
-        const list = await Product.findById(_id);
+        const list = await Stock_In.findById(_id);
 
         return res.status(200).json({ list: list });
     } catch (err) {
@@ -56,7 +56,8 @@ router.put('/update/:_id', async (req, res) => {
     try {
         const { _id } = req.params;
 
-        const { Product_Id, Product_Name } = req.body;
+        const { Product_Id, Date, Quantity, Unit_Price } = req.body;
+        const Total_Price = Number(Quantity) * Number(Unit_Price);
 
         let updated = {};
 
