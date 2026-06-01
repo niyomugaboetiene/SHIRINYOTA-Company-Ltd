@@ -48,14 +48,14 @@ const StockOutList = () => {
                     </thead>
 
                     <tbody>
-                        {stockInReport?.map((product, index) => (
+                        {stockOutReport?.map((product, index) => (
                             <tr key={index} className="bg-blue-100 text-gray-800">
                                 <td className="py-3 px-2 text-left">{product.Product_Id?.Product_Id}</td>
                                 <td className="py-3 px-2 text-left">{product.Product_Id?.Product_Name}</td>
                                 <td className="py-3 px-2 text-left">{new Date(product.Date).toLocaleDateString()}</td>
                                 <td className="py-3 px-2 text-left">{product.Quantity}</td>
                                 <td>
-                                    <Link to={`/stockIn/update/${product._id}`} className="bg-amber-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors">Update</Link>
+                                    <Link to={`/stockOut/update/${product._id}`} className="bg-amber-500 py-2 px-6 rounded-lg text-white hover:bg-amber-400 transition-colors">Update</Link>
                                 </td>
                                 <td>
                                    <button
