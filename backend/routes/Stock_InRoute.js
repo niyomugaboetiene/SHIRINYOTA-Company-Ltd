@@ -4,7 +4,19 @@ import Stock_Out from "../schema/Stock_OutSchema.js";
 
 const router = express.Router();
 
-router.post('/addNew', async (req, res) => {
+function isAuthorized (req, res, next) {
+    try {
+        if (!req.session.user) {
+            return res.status(401).json({ message: 'Login first.' });
+        }
+
+        next();
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+router.post('/addNew', isAuthorized, async (req, res) => {
     try {
         // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
         const { Product_Id, Date, Quantity, Unit_Price } = req.body;
@@ -24,7 +36,7 @@ router.post('/addNew', async (req, res) => {
     }
 });
 
-router.get('/list', async (req, res) => {
+router.get('/list', isAuthorized, async (req, res) => {
     try {
         const list = await Stock_In.find().populate("Product_Id");
 
@@ -36,7 +48,7 @@ router.get('/list', async (req, res) => {
 });
 
 
-router.get('/list/:_id', async (req, res) => {
+router.get('/list/:_id', isAuthorized, async (req, res) => {
     try {
         const _id = req.params._id;
 
@@ -53,7 +65,7 @@ router.get('/list/:_id', async (req, res) => {
     }
 });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAuthorized, async (req, res) => {
     try {
         const { _id } = req.params;
 
@@ -79,7 +91,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAuthorized, async (req, res) => {
     try {
         const _id = req.params._id;
 
@@ -94,7 +106,7 @@ router.delete('/delete/:_id', async (req, res) => {
 
 
 // report
-router.get('/report/daily', async (req, res) => {
+router.get('/report/daily', isAuthorized, async (req, res) => {
     try {
         const today = new Date();
 
@@ -122,7 +134,7 @@ router.get('/report/daily', async (req, res) => {
 });
 
 // weekly
-router.get('/report/weekly', async (req, res) => {
+router.get('/report/weekly', isAuthorized, async (req, res) => {
     try {
         const today = new Date();
         const sevenDayAgo = new Date();
@@ -142,7 +154,7 @@ router.get('/report/weekly', async (req, res) => {
 });
 
 // monthly
-router.get('/report/monthly', async (req, res) => {
+router.get('/report/monthly', isAuthorized, async (req, res) => {
     try {
         const today = new Date();
         
@@ -164,7 +176,7 @@ router.get('/report/monthly', async (req, res) => {
 });
 
 // totals
-router.get('/report/totals', async (req, res) => {
+router.get('/report/totals', isAuthorized, async (req, res) => {
     try {
         const stockOut = await Stock_Out.find();
         const stockIn = await Stock_In.find();

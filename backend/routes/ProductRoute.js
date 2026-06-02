@@ -3,7 +3,18 @@ import express from "express";
 
 const router = express.Router();
 
-router.post('/addNew', async (req, res) => {
+function isAuthorized (req, res, next) {
+    try {
+        if (!req.session.user) {
+            return res.status(401).json({ message: 'Login first.' });
+        }
+
+        next();
+    } catch (err) {
+        console.error(err);
+    }
+}
+router.post('/addNew', isAuthorized, async (req, res) => {
     try {
         // Product_Id(PK), Product_Name,
         const { Product_Id, Product_Name } = req.body;
@@ -21,7 +32,7 @@ router.post('/addNew', async (req, res) => {
     }
 });
 
-router.get('/list', async (req, res) => {
+router.get('/list', isAuthorized, async (req, res) => {
     try {
         const list = await Product.find();
 
@@ -33,7 +44,7 @@ router.get('/list', async (req, res) => {
 });
 
 
-router.get('/list/:_id', async (req, res) => {
+router.get('/list/:_id', isAuthorized, async (req, res) => {
     try {
         const _id = req.params._id;
 
@@ -50,7 +61,7 @@ router.get('/list/:_id', async (req, res) => {
     }
 });
 
-router.put('/update/:_id', async (req, res) => {
+router.put('/update/:_id', isAuthorized, async (req, res) => {
     try {
         const { _id } = req.params;
 
@@ -70,7 +81,7 @@ router.put('/update/:_id', async (req, res) => {
     }
 });
 
-router.delete('/delete/:_id', async (req, res) => {
+router.delete('/delete/:_id', isAuthorized, async (req, res) => {
     try {
         const _id = req.params._id;
 
