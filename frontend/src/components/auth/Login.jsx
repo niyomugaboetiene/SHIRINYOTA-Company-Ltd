@@ -15,7 +15,7 @@ const Login = () => {
         try {
             const res = await axios.post('http://localhost:3000/user/login', { User_Name, Password }, { withCredentials: true });
            setMessage(res.data.message);
-           navigate('/');
+           navigate('/report/daily');
         } catch (err) {
             console.error(err);
             setError(err?.response?.data?.message || "Error occured");
