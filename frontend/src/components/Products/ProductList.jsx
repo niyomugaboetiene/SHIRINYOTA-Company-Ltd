@@ -10,7 +10,7 @@ const ProductList = () => {
 
     const handleGetProduct = async () => {
         try {
-           const res = await axios.get('http://localhost:3000/product/list');
+           const res = await axios.get('http://localhost:3000/product/list', { withCredentials: true });
            setProduct(res.data.list);
         } catch (error) {
             console.error(error);
@@ -30,11 +30,14 @@ const ProductList = () => {
         try {
             const confrim = window.confirm("Are you sure ?");
             if (confrim ){
-                await axios.delete(`http://localhost:3000/product/delete/${_id}`);
+                await axios.delete(`http://localhost:3000/product/delete/${_id}`, { withCredentials: true });
                await handleGetProduct();
             }
         } catch (err) {
             console.error(err);
+           if (err?.response?.data?.message === 'Login first.') {
+                setIsLogged(false);
+            }
         }
     }
 

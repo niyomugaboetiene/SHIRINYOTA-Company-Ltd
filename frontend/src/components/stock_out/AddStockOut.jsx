@@ -13,7 +13,7 @@ const AddStockOut = () => {
 
     const handleAddStockOut = async () => {
         try {
-            const res = await axios.post('http://localhost:3000/stockOut/addNew', { Product_Id, Date, Quantity });
+            const res = await axios.post('http://localhost:3000/stockOut/addNew', { Product_Id, Date, Quantity }, { withCredentials: true });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);
@@ -23,7 +23,7 @@ const AddStockOut = () => {
 
     const handleGetProduct = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/product/list');
+            const res = await axios.get('http://localhost:3000/product/list', { withCredentials: true });
             setProduct(res.data.list);
         } catch (err) {
             console.error(err);

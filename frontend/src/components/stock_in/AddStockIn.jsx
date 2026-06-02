@@ -14,7 +14,7 @@ const AddStockIn = () => {
 
     const handleAddStockIn = async () => {
         try {
-            const res = await axios.post('http://localhost:3000/stockIn/addNew', { Product_Id, Date, Quantity, Unit_Price });
+            const res = await axios.post('http://localhost:3000/stockIn/addNew', { Product_Id, Date, Quantity, Unit_Price }, { withCredentials: true });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);
@@ -24,7 +24,7 @@ const AddStockIn = () => {
 
     const handleGetProduct = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/product/list');
+            const res = await axios.get('http://localhost:3000/product/list', {withCredentials: true });
             setProduct(res.data.list);
         } catch (err) {
             console.error(err);

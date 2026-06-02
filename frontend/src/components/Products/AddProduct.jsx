@@ -11,7 +11,7 @@ const AddProduct = () => {
 
     const handleAddProduct = async () => {
         try {
-            const res = await axios.post('http://localhost:3000/product/addNew', { Product_Id, Product_Name });
+            const res = await axios.post('http://localhost:3000/product/addNew', { Product_Id, Product_Name }, { withCredentials: true });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);

@@ -14,7 +14,7 @@ const UpdateProduct = () => {
 
      const handleGetExistingStock = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/product/list/${_id}`);
+            const res = await axios.get(`http://localhost:3000/product/list/${_id}`, { withCredentials: true });
             const data = res.data.list;
 
             setProduct_Id(data.Product_Id);
@@ -26,7 +26,7 @@ const UpdateProduct = () => {
 
     const handleUpdateProducts = async () => {
         try {
-            const res = await axios.put(`http://localhost:3000/product/update/${_id}`, { Product_Id, Product_Name });
+            const res = await axios.put(`http://localhost:3000/product/update/${_id}`, { Product_Id, Product_Name }, { withCredentials: true });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);

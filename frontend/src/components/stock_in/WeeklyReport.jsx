@@ -1,36 +1,48 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const WeeklyReport = () => {
     const [stockInReport, setStockInReport] = useState(null);
     const [stockOutReport, setStockOutReport] = useState(null);
     const [totals, setTotals] = useState(null);
+    const [isLogged, setIsLogged] = useState(true);
+   const navigate = useNavigate();
 
     const handleGetStockOutReport = async () => {
         try {
-           const res = await axios.get('http://localhost:3000/stockOut/report/weekly');
+           const res = await axios.get('http://localhost:3000/stockOut/report/weekly', { withCredentials: true });
            setStockOutReport(res.data.report);
         } catch (error) {
             console.error(error);
+                       if (error?.response?.data?.message === 'Login first.') {
+                setIsLogged(false);
+            }
         }
     }
 
     const handleGetStockInReport = async () => {
         try {
-           const res = await axios.get('http://localhost:3000/stockIn/report/weekly');
+           const res = await axios.get('http://localhost:3000/stockIn/report/weekly', { withCredentials: true });
            setStockInReport(res.data.report);
         } catch (error) {
             console.error(error);
+                       if (error?.response?.data?.message === 'Login first.') {
+                setIsLogged(false);
+            }
         }
     }
 
  const handleGetStockTotals = async () => {
         try {
-           const res = await axios.get('http://localhost:3000/stockIn/report/totals');
+           const res = await axios.get('http://localhost:3000/stockIn/report/totals', { withCredentials: true });
            setTotals(res.data.totals);
         } catch (error) {
             console.error(error);
+                       if (error?.response?.data?.message === 'Login first.') {
+                setIsLogged(false);
+            }
         }
     }
 
@@ -42,6 +54,18 @@ const WeeklyReport = () => {
     useEffect(() => {
         handleGetStockOutReport();
     }, []);
+
+        if (!isLogged) {
+        return (
+            <div className="min-h-screen flex justify-center items-center">
+                <div className="bg-yellow-200 p-3 h-50 px-5 rounded-xl">
+                     <h1 className="text-center text-yellow-700 text-xl font-bold">Security Alert</h1>
+                     <p className="text-center text-yellow-700 text-md mt-3">Login to access this data. for only authrized users</p>
+                     <button className="text-center bg-blue-300 mt-4 ms-33 py-3 px-6 rounded-full text-white font-bold" onClick={() => navigate('/login')}>Login</button>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="bg-blue-50 min-h-screen">

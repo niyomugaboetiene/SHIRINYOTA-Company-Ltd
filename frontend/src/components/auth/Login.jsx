@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post('http://localhost:3000/user/login', { User_Name, Password });
+            const res = await axios.post('http://localhost:3000/user/login', { User_Name, Password }, { withCredentials: true });
            setMessage(res.data.message);
         } catch (err) {
             console.error(err);

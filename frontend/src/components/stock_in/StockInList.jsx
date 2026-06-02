@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StockInList = () => {
     const [stockInReport, setStockInReport] = useState(null);
+    const [isLogged, setIsLogged] = useState(true);
+    const navigate = useNavigate();
 
 
     const handleGetStockInReport = async () => {
         try {
-           const res = await axios.get('http://localhost:3000/stockIn/list');
+           const res = await axios.get('http://localhost:3000/stockIn/list', { withCredentials: true });
            setStockInReport(res.data.list);
         } catch (error) {
             console.error(error);
+                       if (error?.response?.data?.message === 'Login first.') {
+                setIsLogged(false);
+            }
         }
     }
 
@@ -25,12 +30,26 @@ const StockInList = () => {
         try {
             const confrim = window.confirm("Are you sure ?");
             if (confrim ){
-                await axios.delete(`http://localhost:3000/stockIn/delete/${_id}`);
+                await axios.delete(`http://localhost:3000/stockIn/delete/${_id}`, { withCredentials: true });
                await handleGetStockInReport();
             }
         } catch (err) {
             console.error(err);
+                       if (err?.response?.data?.message === 'Login first.') {
+                setIsLogged(false);
+            }
         }
+    }
+        if (!isLogged) {
+        return (
+            <div className="min-h-screen flex justify-center items-center">
+                <div className="bg-yellow-200 p-3 h-50 px-5 rounded-xl">
+                     <h1 className="text-center text-yellow-700 text-xl font-bold">Security Alert</h1>
+                     <p className="text-center text-yellow-700 text-md mt-3">Login to access this data. for only authrized users</p>
+                     <button className="text-center bg-blue-300 mt-4 ms-33 py-3 px-6 rounded-full text-white font-bold" onClick={() => navigate('/login')}>Login</button>
+                </div>
+            </div>
+        )
     }
     return (
         <div className="bg-blue-50 min-h-screen">
