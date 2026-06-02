@@ -5,8 +5,8 @@ const NavBar = () => {
       <div className="fixed top-0 left-0 right-0">
         <div className="bg-blue-200">
              <div className="flex justify-end space-x-4 me-5 text-blue-500 font-bold py-2">
-                <Link>Login</Link>
-                <Link>Register</Link>
+                <Link to={'/login'}>Login</Link>
+                <Link to={'/register'}>Register</Link>
              </div>
         </div>
           <div className="bg-blue-50">
