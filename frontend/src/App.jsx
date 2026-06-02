@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, UNSAFE_RouteContext } from "react-router-dom"
 
 import DailyReport from "./components/stock_in/DailyReport"
 import WeeklyReport from "./components/stock_in/WeeklyReport"
@@ -18,6 +18,9 @@ import UpdateProduct from "./components/Products/UpdateProduct"
 
 import NavBar from "./components/dashboard/Nav";
 import Footer from "./components/dashboard/Footer"
+
+import Login from "./components/auth/Login"
+import Register from "./components/auth/Register"
 
 function App() {
 
@@ -43,6 +46,8 @@ function App() {
           <Route path="/product/list" element={<ProductList /> }/>
           <Route path="/product/update/:_id" element={<UpdateProduct />}/>
 
+          <Route path="/login" element={<Login />}/>
+          <Route path="/register" element={<Register />}/>
        </Routes>
        <Footer />
     </BrowserRouter>
