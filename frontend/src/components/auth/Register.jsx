@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
     // Product_Id, Product_Name
@@ -8,11 +9,13 @@ const Register = () => {
     const [Password, setPassword] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState(""); 
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
             const res = await axios.post('http://localhost:3000/user/register', { User_Name, Password }, { withCredentials: true });
            setMessage(res.data.message);
+           navigate('/login');
         } catch (err) {
             console.error(err);
             setError(err?.response?.data?.message || "Error occured");

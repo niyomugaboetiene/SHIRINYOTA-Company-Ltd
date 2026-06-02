@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
     // Product_Id, Product_Name
@@ -8,11 +9,13 @@ const AddProduct = () => {
     const [Product_Name, setProduct_Name] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState(""); 
+    const navigate = useNavigate();
 
     const handleAddProduct = async () => {
         try {
             const res = await axios.post('http://localhost:3000/product/addNew', { Product_Id, Product_Name }, { withCredentials: true });
            setMessage(res.data.message);
+           navigate('/product/list');
         } catch (err) {
             console.error(err);
             setError(err?.response?.data?.message || "Error occured");

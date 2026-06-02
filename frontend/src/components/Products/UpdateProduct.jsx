@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateProduct = () => {
     // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
@@ -9,6 +9,7 @@ const UpdateProduct = () => {
     const [Product_Name, setProduct_Name] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState(""); 
+    const navigate = useNavigate();
 
     const { _id } = useParams();
 
@@ -28,6 +29,7 @@ const UpdateProduct = () => {
         try {
             const res = await axios.put(`http://localhost:3000/product/update/${_id}`, { Product_Id, Product_Name }, { withCredentials: true });
            setMessage(res.data.message);
+           navigate('/product/list');
         } catch (err) {
             console.error(err);
             setError(err?.response?.data?.message || "Error occured");

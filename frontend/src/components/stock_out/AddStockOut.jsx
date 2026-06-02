@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddStockOut = () => {
     // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
@@ -10,11 +11,13 @@ const AddStockOut = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState(""); 
     const [product, setProduct] = useState(null);
+    const navigate = useNavigate();
 
     const handleAddStockOut = async () => {
         try {
             const res = await axios.post('http://localhost:3000/stockOut/addNew', { Product_Id, Date, Quantity }, { withCredentials: true });
            setMessage(res.data.message);
+                      navigate('/stockOut/list');
         } catch (err) {
             console.error(err);
             setError(err?.response?.data?.message || "Error occured");

@@ -16,6 +16,7 @@ const AddStockIn = () => {
         try {
             const res = await axios.post('http://localhost:3000/stockIn/addNew', { Product_Id, Date, Quantity, Unit_Price }, { withCredentials: true });
            setMessage(res.data.message);
+           navigate('/stockIn/list');
         } catch (err) {
             console.error(err);
             setError(err?.response?.data?.message || "Error occured");

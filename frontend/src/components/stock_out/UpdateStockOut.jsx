@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateStockOut = () => {
     // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
@@ -12,6 +12,7 @@ const UpdateStockOut = () => {
     const [error, setError] = useState(""); 
     const { _id } = useParams();
     const [product, setProduct] = useState(null);
+    const navigate = useNavigate();
 
      const handleGetExistingStock = async () => {
         try {
@@ -29,6 +30,7 @@ const UpdateStockOut = () => {
         try {
             const res = await axios.put(`http://localhost:3000/stockOut/update/${_id}`, { Product_Id, Date, Quantity }, { withCredentials: true });
            setMessage(res.data.message);
+                      navigate('/stockIn/list');
         } catch (err) {
             console.error(err);
             console.log("Message", err?.response?.data?.message);
