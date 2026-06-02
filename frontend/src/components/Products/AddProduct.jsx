@@ -8,7 +8,6 @@ const AddProduct = () => {
     const [Product_Name, setProduct_Name] = useState("");
     const [message, setMessage] = useState("");
     const [error, setError] = useState(""); 
-    const [product, setProduct] = useState(null);
 
     const handleAddProduct = async () => {
         try {

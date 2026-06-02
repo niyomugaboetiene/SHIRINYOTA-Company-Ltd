@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ProductList = () => {
     const [product, setProduct] = useState(null);
+    const [isLogged, setIsLogged] = useState(true);
+    const navigate = useNavigate();
 
 
     const handleGetProduct = async () => {
@@ -12,6 +14,9 @@ const ProductList = () => {
            setProduct(res.data.list);
         } catch (error) {
             console.error(error);
+            if (error?.response?.data?.message === 'Login first.') {
+                setIsLogged(false);
+            }
         }
     }
 
@@ -31,6 +36,18 @@ const ProductList = () => {
         } catch (err) {
             console.error(err);
         }
+    }
+
+    if (!isLogged) {
+        return (
+            <div className="min-h-screen flex justify-center items-center">
+                <div className="bg-yellow-200 p-3 h-50 px-5 rounded-xl">
+                     <h1 className="text-center text-yellow-700 text-xl font-bold">Security Alert</h1>
+                     <p className="text-center text-yellow-700 text-md mt-3">Login to access this data. for only authrized users</p>
+                     <button className="text-center bg-blue-300 mt-4 ms-33 py-3 px-6 rounded-full text-white font-bold" onClick={() => navigate('/login')}>Login</button>
+                </div>
+            </div>
+        )
     }
     return (
         <div className="bg-blue-50 min-h-screen">
