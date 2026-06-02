@@ -54,7 +54,10 @@ const StockInList = () => {
     return (
         <div className="bg-blue-50 min-h-screen">
             <div className="max-w-7xl mx-auto w-ful">
-                <h1 className="text-xl text-center font-bold text-blue-500">Stock In List</h1>
+                <div className="flex justify-between mb-5 ">
+                    <h1 className="text-xl font-bold text-blue-500">Stock In List</h1>
+                    <Link to={'/stockIn/add'} className="bg-amber-500  py-3 px-6 rounded-lg text-white font-bold">Add new</Link>
+                </div>
                 <table className="w-full">
                     <thead className="bg-amber-500 text-gray-800">
                         <tr>

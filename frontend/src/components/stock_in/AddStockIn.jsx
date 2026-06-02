@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddStockIn = () => {
     // Product_Id(FK),Date,Quantity,Unit_Price,Total_Price
@@ -11,6 +12,7 @@ const AddStockIn = () => {
     const [message, setMessage] = useState("");
     const [error, setError] = useState(""); 
     const [product, setProduct] = useState(null);
+    const navigate = useNavigate();
 
     const handleAddStockIn = async () => {
         try {
