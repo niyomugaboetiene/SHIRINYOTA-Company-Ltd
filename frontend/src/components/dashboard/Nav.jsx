@@ -2,7 +2,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
-
     const navigate = useNavigate();
 
     const logout = async () => {
@@ -37,7 +36,7 @@ const NavBar = () => {
                     </nav>
                 </div>
                 <div>
-                    <button className="me-5 mt-5 bg-red-500 py-2 px-6 text-white font-bold rounded-lg" onClick={() => logout}>Logout</button>
+                    <button className="me-5 mt-5 bg-red-500 py-2 px-6 text-white font-bold rounded-lg" onClick={logout}>Logout</button>
                 </div>
             </div>
         </div>
