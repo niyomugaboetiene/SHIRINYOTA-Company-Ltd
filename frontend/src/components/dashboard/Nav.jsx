@@ -1,6 +1,20 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+
+    const navigate = useNavigate();
+
+    const logout = async () => {
+        try {
+        await axios.post('http://localhost:3000/user/logout', {}, { withCredentials: true });
+        alert('Logged out successfully. Byeee');
+        navigate('/login');
+        } catch (err) {
+            console.error('err');
+        }
+
+    }
     return (
       <div className="fixed top-0 left-0 right-0">
         <div className="bg-blue-200">
@@ -23,7 +37,7 @@ const NavBar = () => {
                     </nav>
                 </div>
                 <div>
-                    Admin Data
+                    <button className="me-5 mt-5 bg-red-500 py-2 px-6 text-white font-bold rounded-lg" onClick={() => logout}>Logout</button>
                 </div>
             </div>
         </div>
